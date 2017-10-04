@@ -32,7 +32,6 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
     $scope.chartLabel = ["Principal & Interest - $1,491"];
     $scope.chartData = [1491];
 
-    $scope.myCharts = {};
 
     $scope.validateInput = function (field) {
         switch (field) {
@@ -244,6 +243,9 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
         var canvas = document.getElementById("myChart");
         var ctx = canvas.getContext('2d');
 
+        canvas.width = '400';
+        canvas.height = '400';
+
         var myChart = new Chart(ctx, {
             type: 'pie',
             data: {
@@ -252,21 +254,21 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
                     label: 'monthly payment',
                     data: $scope.chartData,
                     backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
                     borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
                     borderWidth: 1
         }]
             },
@@ -274,7 +276,13 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
                 tooltips: {
                     enabled: false
                 },
-                events: []
+                events: [],
+                legend: {
+                    display: true,
+                    position: 'bottom'
+                },
+                responsive: true,
+                maintainAspectRatio: false
             }
         });
     };
