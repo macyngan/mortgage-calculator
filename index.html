@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mortgage Calculator</title>
+    <link rel="icon" href="image/favicon.svg" type="image/svg">
+    <link rel="stylesheet" type="text/css" href="css/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/range.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <style type="text/css">
+        body>.ui.container {
+            margin-top: 3em;
+        }
+
+        .ui.container>h1 {
+            font-size: 3em;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .ui.container>h2.dividing.header {
+            font-size: 2em;
+            font-weight: normal;
+
+        }
+
+    </style>
+</head>
+
+<body ng-app="myApp">
+
+    <div id="container" class="ui container" ng-controller="mortgage-calculator">
+        <h1>
+            <i class="home icon" style="color: #00b5ad"></i>
+        </h1>
+        <h2 class="ui dividing header">Mortgage Calculator</h2>
+        <div class="ui stackable grid">
+            <div class="ten wide column">
+                <form class="ui form">
+                    <div class="field">
+
+                        <label>Home Price</label>
+
+                        <div class="inline fields">
+                            <div class="ui transparent input line-box six wide field">
+                                <i>$</i>
+                                <input type="text" id="homePriceInput" name="home-price" ng-model="homePrice" ng-change="validateInput('homePrice')">
+                            </div>
+
+                            <div class="ui grey range" id="homePriceRange">
+                            </div>
+                        </div>
+                        <p id="homePriceErr" class="errMsg"></p>
+
+                    </div>
+
+                    <div class="field">
+                        <label>Down Payment</label>
+                        <div class="inline fields">
+                            <div class="ui transparent input line-box six wide field">
+                                <i>$</i>
+                                <input type="text" id="downPaymentInput" name="down-payment" ng-model="downPayment" ng-change="validateInput('downPayment')">
+                            </div>
+                            <div>=</div>
+                            <div class="ui transparent right labeled input two wide field line-box">
+                                <input class="align-right" id="downPaymentPercentInput" type="text" ng-model="downPaymentPercent" ng-change="validateInput('downPaymentPercent')">
+                                <i>%</i>
+                            </div>
+                            <div class="ui grey range" id="downPaymentRange">
+                            </div>
+                        </div>
+                        <p id="downPaymentErr" class="errMsg"></p>
+                    </div>
+
+                    <div class="field">
+                        <label>Interest Rate</label>
+                        <div class="inline fields">
+                            <div class="ui transparent right labeled input three wide field line-box">
+                                <input type="text" id="interestRateInput" name="interest-rate" ng-model="interestRate" ng-change="validateInput('interestRate')">
+                                <i>%</i>
+                            </div>
+                            <div class="ui grey range" id="interestRateRange">
+                            </div>
+                        </div>
+                        <p id="interestRateErr" class="errMsg"></p>
+                    </div>
+
+
+                    <div class="field">
+                        <label>HOA Dues</label>
+                        <div class="inline fields">
+                            <div class="ui transparent right labeled input three wide field line-box">
+                                <i>$</i>
+                                <input type="text" id="hoaInput" name="hoa-fee" ng-model="hoaFee" ng-change="validateInput('hoaFee')">
+                                <i>/mo</i>
+                            </div>
+                            <div></div>
+                            <div class="ui grey range" id="hoaDuesRange">
+                            </div>
+                        </div>
+                        <p id="hoaFeeErr" class="errMsg"></p>
+                    </div>
+
+                    <div class="six wide field">
+                        <label>Loan Type</label>
+                        <select class="ui dropdown" id="loadType" ng-model="loanType" ng-change="validateInput('loanType')">
+                            <option value="30">30-year fixed</option>
+                            <option value="20">20-year fixed</option>
+                            <option value="15">15-year fixed</option>
+                            <option value="10">10-year fixed</option>
+                        </select>
+                    </div>
+
+                    <br/>
+                    <button id="moreOptions" class="ui teal basic button" ng-click="toggleMoreOptions()">More Options</button>
+
+                    <div class='advance-options' ng-show="showMoreOptions">
+
+                        <div class="field">
+                            <label>Property Tax</label>
+                            <div class="inline fields">
+                                <div class="ui transparent right labeled input four wide field line-box">
+                                    <input type="text" id="propertyTaxInput" name="property-tax" ng-model="propertyTax" ng-change="validateInput('propertyTax')">
+                                    <i>%</i>
+                                </div>
+                                <div class="ui grey range" id="propertyTaxRange">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="propertyTaxErr" class="errMsg"></p>
+
+                        <div class="field">
+                            <label>Home Insurance</label>
+                            <div class="inline fields">
+                                <div class="ui transparent input four wide field line-box">
+                                    <i>$</i>
+                                    <input type="text" id="homeInsuranceInput" name="home-insurance" ng-model="homeInsurance" ng-change="validateInput('homeInsurance')">
+                                    <i>/yr</i>
+                                </div>
+                                <div></div>
+                                <div class="ui grey range" id="homeInsuranceRange">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="homeInsuranceErr" class="errMsg"></p>
+
+                        <div class="field">
+                            <label>Other Payments</label>
+                            <div class="inline fields">
+                                <div class="ui transparent input four wide field line-box">
+                                    <i>$</i>
+                                    <input type="text" id="otherPaymentsInput" name="other-payments" ng-model="otherPayments" ng-change="validateInput('otherPayments')">
+                                    <i>/yr</i>
+                                </div>
+                                <div></div>
+                                <div class="ui grey range" id="otherPaymentRange">
+                                </div>
+                            </div>
+                        </div>
+                        <p id="otherPaymentsErr" class="errMsg"></p>
+                    </div>
+                </form>
+
+            </div>
+            <div id="graph" class="six wide column">
+                <div class="ui large header">Monthly Payment:</div>
+                <div id='displayValue'>
+                    <div id="paymentDollarSign" class="inline ui huge header">$</div>
+                    <div id="monthlyPayment" class="inline ui huge header center aligned" ng-bind="monthlyPayment"></div>
+                </div>
+                <br/>
+                <div id="chartContainer">
+                    <canvas id="myChart" width="400" height="400"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="javascript/jquery-3.2.1.min.js"></script>
+    <script src="javascript/angular.min.js"></script>
+    <script src="javascript/semantic.min.js"></script>
+    <script src="javascript/range.js"></script>
+    <script src="javascript/app.js"></script>
+    <script src="javascript/Chart.min.js"></script>
+</body>
+
+</html>
