@@ -4,3 +4,5 @@ A simple and easy to use mortgage calculator, allows users to visualize the brea
 
 Demo Link:
 https://macyngan.github.io/mortgage-calculator/
+
+![alt text](https://github.com/macyngan/mortgage-calculator/blob/master/demo/screenshots/screenshot_01.png "Mortgage Calculator Screenshot")
