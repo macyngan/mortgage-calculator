@@ -7,7 +7,7 @@ https://macyngan.github.io/mortgage-calculator/
 
 ![alt text](https://github.com/macyngan/mortgage-calculator/blob/master/demo/screenshots/screenshot_01.png "Mortgage Calculator Screenshot")
 
-Tech Stack:
+### Tech Stack:
 * AngularJS
 * Javascript
 * Semantic UI
