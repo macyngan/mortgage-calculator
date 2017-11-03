@@ -10,6 +10,7 @@ https://macyngan.github.io/mortgage-calculator/
 ### Tech Stack:
 * AngularJS
 * Javascript
+* Chart.js
 * Semantic UI
 * Semantic UI Range
 * HTML
