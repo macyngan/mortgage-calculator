@@ -125,6 +125,7 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
                         $scope.interestRateErr = 'Please enter decimal between 0 to 8.000';
                     } else {
                         $('#interestRateRange').range('set value', parseFloat(num));
+                        $scope.interestRateErr = '';
                     }
                 }
 
@@ -173,6 +174,7 @@ myApp.controller("mortgage-calculator", ['$scope', function ($scope) {
                         $scope.propertyTaxErr = 'Please enter decimal between 0 to 4.000';
                     } else {
                         $('#propertyTaxRange').range('set value', parseFloat(num));
+                        $scope.propertyTaxErr = '';
                     }
                 }
 
